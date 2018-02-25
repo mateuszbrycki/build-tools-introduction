@@ -58,4 +58,65 @@
     ```
     export MY_CUSTOM_FLAG=dasdsad
     ```
-    
+
+## Gradle
+1.  Gradle
+2.  The .gradle directory
+3.  The [gradle.properties](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties) file
+4.  [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
+5.  build.gradle initial structure:
+    * [apply](https://guides.gradle.org/creating-new-gradle-builds/?_ga=2.79451668.1636325932.1519554111-2042327082.1517596084#apply_a_plugin)
+    * [dependencies](https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html#sec:external_dependencies_tutorial)
+    * [repositories](https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html#sec:repositories_tutorial)
+    * [buildscript](https://docs.gradle.org/current/userguide/organizing_build_logic.html)
+6. [Tasks](https://docs.gradle.org/current/userguide/tutorial_using_tasks.html)
+7. Running a task
+    ```
+    gradle clean test
+    ```
+8. Running the application
+    ```
+    gradle bootRun
+    ```
+9. The build directory
+    ```
+    gradle jar
+    ```
+10. Creating a task
+    ```
+    task printMessage() {
+        println "This is a message from the printMessage task"
+    }
+    ```
+11. Parameterizing the task
+    ```
+    task printMessage() {
+        println "Parameterized message: ${myMessage}"
+    }
+    ```
+12. Creating ~/.gradle/gradle.properties
+    ```
+    myMessage=Message from gradle.properties
+    ```
+    ```
+    gradle printMessage
+    ```    
+13. Overriding values from gradle.properties
+    ```
+    gradle printMessage -PmyMessage="Custom Message"
+    ```
+14. Using system properties
+    ```
+    def myMessageSystemProperty = System.getProperty("MESSAGE_SYSTEM_PROPERTY")
+    println "Parameterized message: ${myMessageSystemProperty}"
+    ...
+    gradle printMessage -DMESSAGE_SYSTEM_PROPERTY="Message system property"
+    ```
+15. Configuring [system properties](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_system_properties) in gradle.properties
+    ```
+    systemProp.MESSAGE_SYSTEM_PROPERTY="System property from gradle.properties"
+    ```
+16. Override the property
+    ```
+     gradle printMessage -DMESSAGE_SYSTEM_PROPERTY="Overriden system property"
+    ```
